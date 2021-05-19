@@ -27,8 +27,7 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 
 	@Override
@@ -40,23 +39,12 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 			session.save(etudiant);
 			session.getTransaction().commit();
 			etudiants.add(etudiant);
-			
-			//reouverture de la session
-	
-			session = factory.getCurrentSession();
-			session.beginTransaction();
-			System.out.println("sos");
-			
 		}
 	}
 
 	@Override
 	public void delete(Etudiant toDel) throws NullPointerException{
 		// TODO Auto-generated method stub
-		if(!session.isOpen()) {
-			session = factory.getCurrentSession();
-			session.beginTransaction();
-		}
 		Etudiant e = getById(toDel.getId())	;
 
 		if(e!=null) {
@@ -69,10 +57,6 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 	@Override
 	public void update(int id) throws NullPointerException{
 		// TODO Auto-generated method stub
-		if(!session.isOpen()) {
-			session = factory.getCurrentSession();
-			session.beginTransaction();
-		}
 		
 		if(getById(id)!=null) {
 			Etudiant etud = getById(id);
