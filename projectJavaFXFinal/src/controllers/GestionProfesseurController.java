@@ -9,20 +9,21 @@ import org.hibernate.SessionFactory;
 
 import interfaces.IModification;
 import models.Etudiant;
+import models.Professeur;
 
-public class GestionEtudiantController implements IModification<Etudiant>{
+public class GestionProfesseurController implements IModification<Professeur>{
 	
-	List<Etudiant> etudiants;
+	List<Professeur> professeurs;
 	Session session;
 	SessionFactory factory;
 	Scanner sc;
 	
-	public GestionEtudiantController() {
+	public GestionProfesseurController() {
 	
 		try {
 			session=DbConnection.getInstance().getSession();
 			factory=DbConnection.getInstance().getFactory();
-			etudiants = session.createQuery("from Etudiant").getResultList();
+			professeurs = session.createQuery("from Professeur").getResultList();
 			sc = new Scanner(System.in);
 		}
 		catch(Exception e) {
@@ -31,25 +32,25 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 	}
 
 	@Override
-	public void add(Etudiant etudiant) {
-		if(etudiants==null) {
-			etudiants = new ArrayList<>();
+	public void add(Professeur professeur) {
+		if(professeurs==null) {
+			professeurs = new ArrayList<>();
 		}
 		else {
-			session.save(etudiant);
+			session.save(professeur);
 			session.getTransaction().commit();
-			etudiants.add(etudiant);
+			professeurs.add(professeur);
 		}
 	}
 
 	@Override
-	public void delete(Etudiant toDel) throws NullPointerException{
+	public void delete(Professeur toDel) throws NullPointerException{
 		// TODO Auto-generated method stub
-		Etudiant e = getById(toDel.getEtudiantId())	;
+		Professeur e = getById(toDel.getId())	;
 
 		if(e!=null) {
 			session.delete(toDel);
-			etudiants.remove(toDel);
+			professeurs.remove(toDel);
 			session.getTransaction().commit();
 		}
 	}
@@ -59,7 +60,7 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 		// TODO Auto-generated method stub
 		
 		if(getById(id)!=null) {
-			Etudiant etud = getById(id);
+			Professeur etud = getById(id);
 
 			System.out.println("");
 			System.out.println("Entrer le nom de l'étudiant:");
@@ -86,7 +87,7 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 			System.out.println("Entrer l'email de L'étudiant:");
 			etud.setEmail(sc.nextLine());
 			System.out.println("Entrer le groupe sanguin de L'étudiant:");
-			etud.setGroupeSanguin(sc.nextLine());
+			etud.setSpeciality(sc.nextLine());
 			session.getTransaction().commit();
 		}
 
@@ -96,7 +97,7 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 	public void showDetail(int id) {
 		// TODO Auto-generated method stub
 		if(getById(id)!=null) {
-			Etudiant etud = getById(id);
+			Professeur etud = getById(id);
 			System.out.println(etud.toString());
 		}
 	}
@@ -104,28 +105,28 @@ public class GestionEtudiantController implements IModification<Etudiant>{
 	@Override
 	public void showAll() {
 		// TODO Auto-generated method stub
-		if(etudiants.isEmpty()) {
+		if(professeurs.isEmpty()) {
 	    	System.out.println("Aucune donnée n'a été enregistré");
 	    }
 	    else 
 	    {
-	    	for(Etudiant ets:etudiants) {
+	    	for(Professeur ets:professeurs) {
 	    		System.out.println("Nom:"+ets.getNom()+" Prénom:"+ets.getPrenom()+" Matricule:"+ets.getMatricule());
 	    	}
 	   	}
 	}
 
 	@Override
-	public List<Etudiant> findAll() {
+	public List<Professeur> findAll() {
 		// TODO Auto-generated method stub
-		return etudiants;
+		return professeurs;
 	}
 
 	@Override
-	public Etudiant getById(int id) {
+	public Professeur getById(int id) {
 		// TODO Auto-generated method stub
 		try {
-			Etudiant e = session.get(Etudiant.class, id);
+			Professeur e = session.get(Professeur.class, id);
 			if(e!=null) {
 				return e;
 			}

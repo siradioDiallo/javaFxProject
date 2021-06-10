@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="application" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="1155.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <VBox fx:id="gpGroupe" prefHeight="619.0" prefWidth="182.0" style="-fx-background-color: #7156DD;" stylesheets="@../css/application.css">
+         <children>
+            <Pane prefHeight="81.0" prefWidth="182.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="182.0">
+                     <children>
+                        <Label text="GESTION SCOLAIRE">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <Button fx:id="btnEtudiant" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleClicked" prefHeight="33.0" prefWidth="182.0" text="étudiant">
+               <graphic>
+                  <FontAwesomeIcon glyphName="USER" text="" />
+               </graphic>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnProfesseur" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleClicked" prefHeight="33.0" prefWidth="182.0" text="professeur">
+               <graphic>
+                  <FontAwesomeIcon glyphName="USER" />
+               </graphic>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGroupe" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleClicked" prefHeight="33.0" prefWidth="182.0" text="groupe">
+               <graphic>
+                  <FontAwesomeIcon glyphName="GROUP" text="" />
+               </graphic>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGestionGroupe" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleClicked" prefHeight="33.0" prefWidth="182.0" text="groupe étudiant">
+               <graphic>
+                  <FontAwesomeIcon glyphName="GROUP" />
+               </graphic>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="187.0" layoutY="170.0" prefHeight="397.0" prefWidth="964.0">
+         <children>
+            <StackPane prefHeight="398.0" prefWidth="964.0">
+               <children>
+                  <VBox fx:id="vbSelectGp" alignment="CENTER" prefHeight="398.0" prefWidth="925.0" style="-fx-background-color: white;">
+                     <children>
+                        <AnchorPane prefHeight="398.0" prefWidth="964.0">
+                           <children>
+                              <VBox layoutX="332.0" layoutY="35.0" prefHeight="328.0" prefWidth="294.0" style="-fx-background-color: #dcdde1;">
+                                 <children>
+                                    <Label prefHeight="22.0" prefWidth="235.0" style="-fx-font-size: 1.2em; -fx-font-weight: bold;" text="Sélection de groupe à modifier" textFill="#141414">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Id du groupe">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                       <VBox.margin>
+                                          <Insets left="25.0" right="30.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button fx:id="btnOpenModifGp" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleModifClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Modifier">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="btnCancelModifGp" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Annuler">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <GridPane fx:id="gpProfesseur" onMouseClicked="#handleClicked" prefHeight="328.0" prefWidth="656.0" style="-fx-background-color: #ffffff;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="146.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="345.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TableView fx:id="tvProf" prefHeight="294.0" prefWidth="656.0" stylesheets="@../css/application.css" GridPane.rowIndex="1">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Id" />
+                              <TableColumn prefWidth="85.0" text="Nom" />
+                              <TableColumn prefWidth="85.0" text="Prénom" />
+                              <TableColumn prefWidth="92.0" text="Matricule" />
+                              <TableColumn prefWidth="49.0" text="Tél" />
+                              <TableColumn prefWidth="99.0" text="Email" />
+                              <TableColumn prefWidth="101.0" text="Adresse" />
+                              <TableColumn prefWidth="78.0" text="Spécialité" />
+                              <TableColumn prefWidth="78.0" text="Nationalié" />
+                              <TableColumn prefWidth="78.0" text="Date N" />
+                              <TableColumn prefWidth="78.0" text="Lieu N" />
+                              <TableColumn prefWidth="78.0" text="Etat Civil" />
+                              <TableColumn prefWidth="78.0" text="genre" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <HBox prefHeight="80.0" prefWidth="964.0">
+                           <children>
+                              <TextField prefHeight="31.0" prefWidth="221.0" />
+                              <Button fx:id="btnSearchProf" mnemonicParsing="false" style="-fx-text-fill: white;" stylesheets="@../css/application.css" text="Rechercher" />
+                              <Button fx:id="btnAddprof" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="169.0" style="-fx-text-fill: white;" stylesheets="@../css/application.css" text="Ajouter">
+                                 <HBox.margin>
+                                    <Insets left="100.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnModifEtd1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="169.0" style="-fx-text-fill: white; -fx-background-color: #1289A7;" text="Modifier">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnDellEtd1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="169.0" style="-fx-text-fill: white; -fx-background-color: #EA2027;" text="Supprimer">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="TRASH" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="gridGpEtudiant" onMouseClicked="#handleModifClicked" prefHeight="390.0" prefWidth="964.0" style="-fx-background-color: #ffffff;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="931.0" minWidth="10.0" prefWidth="532.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="697.0" minWidth="0.0" prefWidth="2.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="697.0" minWidth="0.0" prefWidth="431.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="159.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="261.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="362.0" minHeight="10.0" prefHeight="356.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox prefHeight="353.0" prefWidth="525.0" GridPane.rowIndex="2">
+                           <children>
+                              <TableView fx:id="tabViewGroupeEtudiant" prefHeight="294.0" prefWidth="520.0" stylesheets="@../css/application.css">
+                                 <columns>
+                                    <TableColumn fx:id="colGestEtudiantId" prefWidth="57.0" text="Id" />
+                                    <TableColumn fx:id="colGestEtudiantNom" prefWidth="39.0" text="Nom" />
+                                    <TableColumn fx:id="colGestEtudiantPrenom" prefWidth="62.0" text="Prénom" />
+                                    <TableColumn fx:id="colGestEtudiantMatricule" prefWidth="74.0" text="Matricule" />
+                                    <TableColumn fx:id="colGestEtudiantTel" prefWidth="46.0" text="Tél" />
+                                    <TableColumn fx:id="colGestEtudiantEmail" prefWidth="81.0" text="Email" />
+                                    <TableColumn fx:id="colGestEtudiantAdresse" prefWidth="81.0" text="Adresse" />
+                                    <TableColumn prefWidth="78.0" text="Genre" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="137.0" prefWidth="275.0">
+                           <children>
+                              <TextField prefHeight="31.0" prefWidth="243.0" />
+                              <Button fx:id="btnSearchEtd11" mnemonicParsing="false" prefHeight="32.0" prefWidth="87.0" style="-fx-text-fill: white;" stylesheets="@../css/application.css" text="Rechercher">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="105.0" prefWidth="358.0" GridPane.columnIndex="2">
+                           <children>
+                              <Button fx:id="btnDellEtd111" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="246.0" style="-fx-text-fill: white; -fx-background-color: #EA2027;" styleClass="btndelete" stylesheets="@../css/application.css" text="Supprimer un étudiant">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="TRASH" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="61.0" layoutY="30.0" prefHeight="294.0" prefWidth="321.0" style="-fx-background-color: #dcdde1;">
+                                 <children>
+                                    <Label prefHeight="22.0" prefWidth="236.0" style="-fx-font-size: 1.2em; -fx-font-weight: bold;" text="Ajouter un étudiant au groupe" textFill="#141414">
+                                       <VBox.margin>
+                                          <Insets top="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Id de l'étudiant">
+                                       <VBox.margin>
+                                          <Insets right="140.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="244.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                       <VBox.margin>
+                                          <Insets left="40.0" right="30.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="285.0">
+                                       <children>
+                                          <Button fx:id="btnModifEtd11112" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Ajouter">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="10.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="btnModifEtd11111" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Annuler">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="gridGp" onMouseClicked="#handleClicked" prefHeight="390.0" prefWidth="964.0" style="-fx-background-color: #ffffff;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="355.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="697.0" minWidth="10.0" prefWidth="49.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="697.0" minWidth="10.0" prefWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="697.0" minWidth="10.0" prefWidth="186.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="159.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="261.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="362.0" minHeight="10.0" prefHeight="333.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="362.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="137.0" prefWidth="275.0">
+                           <children>
+                              <TextField prefHeight="31.0" prefWidth="255.0" />
+                              <Button fx:id="btnSearchEtd1" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-text-fill: white;" stylesheets="@../css/application.css" text="Rechercher">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <StackPane prefHeight="330.0" prefWidth="394.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <VBox fx:id="vbDelete" layoutX="10.0" layoutY="10.0" prefHeight="328.0" prefWidth="294.0" style="-fx-background-color: #dcdde1;">
+                                 <children>
+                                    <Label prefHeight="22.0" prefWidth="193.0" style="-fx-font-size: 1.2em; -fx-font-weight: bold;" text="Suppréssion de groupe" textFill="#141414">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Id du groupe">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textFieldGroupeDell" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                       <VBox.margin>
+                                          <Insets left="25.0" right="30.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button fx:id="btnConfirmDeleteGroupe" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#modifInfoGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Supprimer">
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="TRASH" />
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnModifAnnuller" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Effacer">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="vbAjout" prefHeight="328.0" prefWidth="294.0" style="-fx-background-color: #dcdde1;">
+                                 <children>
+                                    <Label prefHeight="22.0" prefWidth="193.0" style="-fx-font-size: 1.2em; -fx-font-weight: bold;" text="Ajout de groupe" textFill="#141414">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Nom du groupe">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textFieldeGroupe" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                       <VBox.margin>
+                                          <Insets left="25.0" right="30.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button fx:id="btnAddGroupe" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#modifInfoGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Ajouter">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="btnAddEffacer" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#modifInfoGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Effacer">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="vbModifier" layoutX="10.0" layoutY="10.0" prefHeight="324.0" prefWidth="394.0" style="-fx-background-color: #dcdde1;">
+                                 <children>
+                                    <Label prefHeight="22.0" prefWidth="193.0" style="-fx-font-size: 1.2em; -fx-font-weight: bold;" text="modification de groupe" textFill="#141414">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Id du groupe">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textFieldIGpToUpdate" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                       <VBox.margin>
+                                          <Insets left="25.0" right="30.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="35.0" layoutY="107.0" style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Nouveau Nom">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textFielNomGpUpdated" layoutX="35.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                       <VBox.margin>
+                                          <Insets left="25.0" right="25.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button fx:id="btnConfirmUpdateGp" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#modifInfoGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Modifier">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="btnUpdateGpAnnuler" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Effacer">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="25.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="37.0" prefWidth="429.0" GridPane.columnIndex="2">
+                           <children>
+                              <Button fx:id="btnAddNewGroupe" mnemonicParsing="false" onAction="#showAddGroupe" prefHeight="30.0" prefWidth="170.0" style="-fx-text-fill: white;" stylesheets="@../css/application.css" text="Ajouter">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnModififGroupe" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateGroupe" prefHeight="29.0" prefWidth="169.0" style="-fx-text-fill: white; -fx-background-color: #1289A7;" styleClass="btnmodif" stylesheets="@../css/application.css" text="Modifier">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="29.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
+                           <children>
+                              <Button fx:id="btnGroupeDelete" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteGroupe" prefHeight="29.0" prefWidth="169.0" style="-fx-text-fill: white; -fx-background-color: #EA2027;" styleClass="btndelete" stylesheets="@../css/application.css" text="Supprimer">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="TRASH" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="319.0" prefWidth="352.0" GridPane.rowIndex="2">
+                           <children>
+                              <TableView fx:id="tvGroupe" prefHeight="323.0" prefWidth="482.0" stylesheets="@../css/application.css">
+                                <columns>
+                                  <TableColumn fx:id="idGroupe" prefWidth="75.0" text="Id" />
+                                  <TableColumn fx:id="nomGroupe" prefWidth="75.0" text="Nom" />
+                                    <TableColumn fx:id="nbreEtdGp" prefWidth="116.0" text="Nbre Etudiant" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="gpStudent" onMouseClicked="#handleClicked" prefHeight="422.0" prefWidth="964.0" style="-fx-background-color: #ffffff;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="362.0" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField prefHeight="31.0" prefWidth="221.0" />
+                              <Button fx:id="btnSearchEtd" mnemonicParsing="false" style="-fx-text-fill: white;" stylesheets="@../css/application.css" text="Rechercher" />
+                              <Button fx:id="btnAddEtudiant" mnemonicParsing="false" onMouseClicked="#addEtudiant" prefWidth="169.0" style="-fx-text-fill: white;" stylesheets="@../css/application.css" text="Ajouter">
+                                 <HBox.margin>
+                                    <Insets left="100.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnModifEtudiant" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateEtudiant" prefHeight="29.0" prefWidth="169.0" style="-fx-text-fill: white; -fx-background-color: #1289A7;" stylesheets="@../css/application.css" text="Modifier ">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnDeleteEudiant" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#deleteEtudiant" prefHeight="29.0" prefWidth="169.0" style="-fx-text-fill: white; -fx-background-color: #EA2027;" styleClass="btncloseRed" stylesheets="@../css/application.css" text="Supprimer ">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="TRASH" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <StackPane prefHeight="406.0" prefWidth="964.0" GridPane.rowIndex="1">
+                           <children>
+                              <AnchorPane fx:id="anchorPaneAjoutEtudiant" prefHeight="398.0" prefWidth="964.0" style="-fx-background-color: #6c5ce7;">
+                                 <children>
+                                    <VBox fx:id="vbModifier1" layoutX="90.0" layoutY="12.0" prefHeight="294.0" prefWidth="321.0" style="-fx-background-color: transparent;">
+                                       <children>
+                                          <TextField fx:id="textFieldAddEtudiantNom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="30.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantPrenom" layoutX="35.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Prénom" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantAdresse" layoutX="35.0" layoutY="173.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Adresse" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantTel" layoutX="35.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Téléphone" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantMatricule" layoutX="35.0" layoutY="186.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Matricule" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudianEmail" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER" layoutX="289.0" layoutY="309.0" prefHeight="60.0" prefWidth="321.0">
+                                       <children>
+                                          <Button fx:id="btnConfirmAddEtudiant" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#modifInfoGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Ajouter">
+                                             <HBox.margin>
+                                                <Insets right="18.0" />
+                                             </HBox.margin>
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnCancelAddEtudiant" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Anuller">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets right="18.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <VBox fx:id="vbModifier11" layoutX="442.0" prefHeight="300.0" prefWidth="321.0" style="-fx-background-color: transparent;">
+                                       <children>
+                                          <TextField fx:id="textFieldAddEtudiantDateN" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Date de Naissance" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="30.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantLieuN" layoutX="35.0" layoutY="173.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Lieu De Naissance" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantNationlatiy" layoutX="35.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Nationalité" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantGpSanguin" layoutX="35.0" layoutY="186.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Groupe Sanguin" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <Label style="-fx-font-weight: 700;" text="Sexe" textFill="WHITE">
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="comboBoxAddSexeEtudiant" prefHeight="25.0" prefWidth="274.0" promptText="homme" visibleRowCount="2">
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="5.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <Label style="-fx-font-weight: 700;" text="Etat Civil" textFill="WHITE">
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="comboBoxAddEtatEtudiant" prefHeight="25.0" prefWidth="274.0" promptText="célibataire" visibleRowCount="2">
+                                             <VBox.margin>
+                                                <Insets left="25.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets top="8.0" />
+                                 </StackPane.margin>
+                              </AnchorPane>
+                              <AnchorPane fx:id="anchorPaneSelectEtudiantIdModifier" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dcdde1;">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" layoutX="285.0" layoutY="46.0" prefHeight="300.0" prefWidth="321.0" style="-fx-background-color: #dcdde1;">
+                                       <children>
+                                          <Label prefHeight="22.0" prefWidth="236.0" style="-fx-font-size: 1.2em; -fx-font-weight: bold;" text="Sélection de l'étudiant à modifier" textFill="#141414">
+                                             <VBox.margin>
+                                                <Insets top="25.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Id de l'étudiant">
+                                             <VBox.margin>
+                                                <Insets right="140.0" top="50.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <TextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="244.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="40.0" right="30.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="285.0">
+                                             <children>
+                                                <Button fx:id="btnModifEtd1111211" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Modifier">
+                                                   <graphic>
+                                                      <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                                   </graphic>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" top="25.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnModifEtd1111111" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Annuler">
+                                                   <graphic>
+                                                      <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                                   </graphic>
+                                                   <HBox.margin>
+                                                      <Insets left="20.0" top="25.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <TableView fx:id="tabViewEtudiant" prefHeight="294.0" prefWidth="656.0" stylesheets="@../css/application.css">
+                                 <columns>
+                                    <TableColumn fx:id="colEtudiantId" prefWidth="75.0" text="Id" />
+                                    <TableColumn fx:id="colEtudiantNom" prefWidth="85.0" text="Nom" />
+                                    <TableColumn fx:id="colEtudiantPrenom" prefWidth="85.0" text="Prénom" />
+                                    <TableColumn fx:id="colEtudiantMatricule" prefWidth="92.0" text="Matricule" />
+                                    <TableColumn fx:id="colEtudiantTel" prefWidth="49.0" text="Tél" />
+                                    <TableColumn fx:id="colEtudiantEmail" prefWidth="99.0" text="Email" />
+                                    <TableColumn fx:id="colEtudiantAdresse" prefWidth="101.0" text="Adresse" />
+                                    <TableColumn fx:id="colEtudiantGpSanguin" prefWidth="78.0" text="Groupe ssanguin" />
+                                    <TableColumn fx:id="colEtudiantNationalite" prefWidth="78.0" text="Nationalié" />
+                                    <TableColumn fx:id="colEtudiantDateN" prefWidth="78.0" text="Date N" />
+                                    <TableColumn fx:id="colEtudiantLieuN" prefWidth="78.0" text="Lieu N" />
+                                    <TableColumn fx:id="colEtudiantEtatC" prefWidth="78.0" text="Etat Civil" />
+                                    <TableColumn fx:id="colEtudiantGenre" prefWidth="78.0" text="genre" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <AnchorPane fx:id="anchorPaneSelectEtudiantIdDelete" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1289A7;">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" layoutX="285.0" layoutY="46.0" prefHeight="300.0" prefWidth="321.0" style="-fx-background-color: #dcdde1;">
+                                       <children>
+                                          <Label prefHeight="22.0" prefWidth="259.0" style="-fx-font-size: 1.2em; -fx-font-weight: bold;" text="Sélection de l'étudiant à supprimer" textFill="#141414">
+                                             <VBox.margin>
+                                                <Insets top="25.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label style="-fx-font-size: 1.2em; -fx-font-weight: 700;" text="Id de l'étudiant">
+                                             <VBox.margin>
+                                                <Insets right="140.0" top="50.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <TextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="244.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="40.0" right="30.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="285.0">
+                                             <children>
+                                                <Button fx:id="btnModifEtd111121" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Confirmer">
+                                                   <graphic>
+                                                      <FontAwesomeIcon fill="WHITE" glyphName="TRASH" />
+                                                   </graphic>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" top="25.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnModifEtd111111" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicked" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Annuler">
+                                                   <graphic>
+                                                      <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                                   </graphic>
+                                                   <HBox.margin>
+                                                      <Insets left="20.0" top="25.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="anchorPaneModifEtudiant" layoutX="10.0" layoutY="18.0" prefHeight="398.0" prefWidth="964.0" style="-fx-background-color: #1289A7;">
+                                 <children>
+                                    <VBox fx:id="vbModifier11" layoutX="90.0" layoutY="12.0" prefHeight="294.0" prefWidth="321.0" style="-fx-background-color: transparent;">
+                                       <children>
+                                          <TextField fx:id="textFieldAddEtudiantNom1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="30.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantPrenom1" layoutX="35.0" layoutY="129.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Prénom" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantAdresse1" layoutX="35.0" layoutY="173.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Adresse" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantTel1" layoutX="35.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Téléphone" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantMatricule1" layoutX="35.0" layoutY="186.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Matricule" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudianEmail1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER" layoutX="289.0" layoutY="309.0" prefHeight="60.0" prefWidth="321.0">
+                                       <children>
+                                          <Button fx:id="btnConfirmAddEtudiant1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#modifInfoGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Modifier">
+                                             <HBox.margin>
+                                                <Insets right="18.0" />
+                                             </HBox.margin>
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" />
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnCancelAddEtudiant1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateGroupe" prefHeight="29.0" prefWidth="114.0" styleClass="btngpAjout" stylesheets="@../css/application.css" text="Anuller">
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets right="18.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <VBox fx:id="vbModifier111" layoutX="442.0" prefHeight="300.0" prefWidth="321.0" style="-fx-background-color: transparent;">
+                                       <children>
+                                          <TextField fx:id="textFieldAddEtudiantDateN1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Date de Naissance" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="30.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantLieuN1" layoutX="35.0" layoutY="173.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Lieu De Naissance" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantNationlatiy1" layoutX="35.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Nationalité" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="textFieldAddEtudiantGpSanguin1" layoutX="35.0" layoutY="186.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="246.0" promptText="Groupe Sanguin" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" styleClass="btnfont" stylesheets="@../css/application.css">
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <Label style="-fx-font-weight: 700;" text="Sexe" textFill="WHITE">
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="comboBoxAddSexeEtudiant1" prefHeight="25.0" prefWidth="274.0" promptText="homme" visibleRowCount="2">
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="5.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <Label style="-fx-font-weight: 700;" text="Etat Civil" textFill="WHITE">
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="comboBoxAddEtatEtudiant1" prefHeight="25.0" prefWidth="274.0" promptText="célibataire" visibleRowCount="2">
+                                             <VBox.margin>
+                                                <Insets left="25.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <Pane fx:id="pnStatus" layoutX="187.0" layoutY="69.0" prefHeight="71.0" prefWidth="964.0" style="-fx-background-color: #6c5ce7;">
+         <children>
+            <Text fx:id="pnText" layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-fill: white;" text="Gestion Etudiant" />
+            <Label fx:id="pnLabel" layoutX="14.0" layoutY="14.0" style="-fx-font-size: 14px; -fx-font-weight: 700;" text="/home/étudiant" />
+         </children>
+      </Pane>
+      <FontAwesomeIcon fx:id="btnClose" fill="#838080" glyphName="CLOSE" layoutX="1135.0" layoutY="20.0" onMouseClicked="#handleClose" size="1.2em" text="" />
+   </children>
+</AnchorPane>

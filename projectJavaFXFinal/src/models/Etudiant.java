@@ -82,7 +82,7 @@ public class Etudiant {
 	}
 
 	
-	public int getId() {
+	public int getEtudiantId() {
 		return etudiantId;
 	}
 

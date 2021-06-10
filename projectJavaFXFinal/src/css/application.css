@@ -1,0 +1,68 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.button {-fx-background-color: #7156DD;
+	-fx-text-fill:#000000;
+	-fx-font-size:1.2em;
+	-fx-font-weight:500;
+}
+
+.label {
+	-fx-text-fill:#000000;
+	-fx-font-size:1.2em;
+	-fx-font-weight:700;
+
+}
+.button:hover{
+	-fx-background-color:#636e72;
+}
+.btnfont{
+	-fx-text-fill:black;
+	-fx-font-weight:700;
+}
+
+.btngpAjout{
+	-fx-background-color: #636e72;
+	-fx-text-fill:white;
+}
+.btngpAjout:hover {
+	-fx-background-color: #7156DD;
+}
+.button:pressed{
+	-fx-background-color:#2d3436;
+	-fx-text-fill:#f5f6fa;
+}
+
+.btncloseRed{
+	-fx-background-color:#EA2027;
+}
+/* table-view stylesheet */
+
+.table-view .column-header,.table-view .column-header-background .filler {
+	-fx-cell-size:20;
+	-fx-background-color:#6c5ce7;
+}
+
+.table-view .column-header .label{
+	-fx-text-fill:white;
+	-fx-font-weight:bold;
+	-fx-alignment:center-left;
+}
+
+.table-view .cell{
+	-fx-cell-size:30;
+	-fx-alignment:center-left;
+	-fx-text-fill:#000000;
+	
+	}
+	
+	.table-row-cell:selected{
+		-fx-background-color:rgb(127,172,243);
+	}
+	
+	.table-view .column-header .button:selected{
+		-fx-background-color:rgb(127,172,243);
+	}
+	
+	
+	.table-row-cell:selected .text{
+		-fx-fill:white;
+	}

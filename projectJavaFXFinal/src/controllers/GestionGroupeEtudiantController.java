@@ -39,7 +39,7 @@ public class GestionGroupeEtudiantController implements IGestionGE {
 			}
 			else  
 			{
-				if(getEtudiantById(e.getId())!=null)
+				if(getEtudiantById(e.getEtudiantId())!=null)
 				{
 				   listEtudiant.add(e);
 				   gp.setEtudiants(listEtudiant);

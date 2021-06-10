@@ -5,6 +5,7 @@ import controllers.MainController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Etudiant;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,8 +17,20 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-	MainController controller = new MainController();
-	
+	//MainController controller = new MainController();
+		
+		try {
+			//	AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/home/fxml/Main.fxml"));
+				Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+				primaryStage.initStyle(StageStyle.TRANSPARENT);
+				
+				primaryStage.setScene(scene);
+				primaryStage.show();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 	}
 	
 	@Override
@@ -31,7 +44,6 @@ public class Main extends Application {
 
 	@Override
 	public void stop() throws Exception {
-		super.stop();
 		DbConnection.getInstance().close();
 		Platform.exit();
 	}
