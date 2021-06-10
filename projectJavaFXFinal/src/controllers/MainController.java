@@ -190,18 +190,6 @@ private TableColumn<Etudiant, String> colGestEtudiantEmail;
 @FXML
 private TableColumn<Etudiant, String> colGestEtudiantAdresse;
 
-@FXML
-private Button btnSearchEtd11;
-
-@FXML
-private Button btnDellEtd111;
-
-@FXML
-private Button btnModifEtd11112;
-
-@FXML
-private Button btnModifEtd11111;
-
 
 // GESTION GROUPE PROPERTIES ***********************************************
 @FXML
