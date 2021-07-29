@@ -14,7 +14,6 @@ public class GestionGroupeEtudiantController implements IGestionGE {
 	List<Groupe> allGroupes;
 	List<Etudiant> allEtudiants;
 	Groupe gp;
-	Scanner sc;
 	
 	public GestionGroupeEtudiantController(){
 		
@@ -25,7 +24,6 @@ public class GestionGroupeEtudiantController implements IGestionGE {
 		allGroupes =session.createQuery("from Groupe").getResultList();
 		allEtudiants = session.createQuery("from Etudiant").getResultList();
 		this.gp=gp;
-		sc= new Scanner(System.in);
 		 
 	}
 	

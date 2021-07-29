@@ -22,9 +22,9 @@ public class Main extends Application {
 		try {
 			//	AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/home/fxml/Main.fxml"));
 				Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
-				Scene scene = new Scene(root);
+				 Scene scene = new Scene(root);
 				scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
-				primaryStage.initStyle(StageStyle.TRANSPARENT);
+				primaryStage.initStyle(StageStyle.DECORATED);
 				
 				primaryStage.setScene(scene);
 				primaryStage.show();

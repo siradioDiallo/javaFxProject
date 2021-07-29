@@ -28,8 +28,18 @@ public class CreatGroupe extends Application {
 			
 			
 			//création groupe
-			//Groupe grp = new Groupe("pr300");
+			Groupe grp0 = new Groupe("pr300");
+			Groupe grp1 = new Groupe("pr302");
+			Groupe grp2 = new Groupe("res300");
+			Groupe grp3 = new Groupe("res310");
+			Groupe grp4 = new Groupe("res410");
 			
+			//saving groupes 
+			session.save(grp4);
+			session.save(grp0);
+			session.save(grp1);
+			session.save(grp2);
+			session.save(grp3);
 			
 			/*
 			List<Groupe> groupes= session.createQuery("from Groupe").getResultList();
@@ -40,7 +50,7 @@ public class CreatGroupe extends Application {
 				}
 				
 			*/
-			
+			/*
 			//récupération et affichage d'un groupe
 			System.out.println("Getting Groupe id=1");
 			int grpId=4;
@@ -56,7 +66,7 @@ public class CreatGroupe extends Application {
 			for(Etudiant et:grp.getEtudiants()) {
 				System.out.println(et.toString());
 			}
-			
+			*/
 			//save groupe
 			//session.save(grp);
 			

@@ -2,39 +2,36 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Etudiant;
 import models.Groupe;
@@ -64,7 +61,7 @@ private Button btnGroupe;
 private Button btnGestionGroupe;
 
 @FXML
-private GridPane gpProfesseur;
+private AnchorPane anchorPaneProfesseur;
 
 @FXML
 private TableView<?> tvProf;
@@ -93,7 +90,7 @@ private Button btnCancelModifGp;
 //GESTION ETUDIANT PROPERTIES *********************************************************************
 
 @FXML
-private GridPane gpStudent;
+private AnchorPane anchorPaneStudent;
 
 @FXML
 private TableView<Etudiant> tabViewEtudiant;
@@ -152,6 +149,9 @@ private Button btnModifEtudiant;
 @FXML
 private Button btnDeleteEudiant;
 
+@FXML
+private RadioButton rdBtnMasculin;
+
 @FXML 
 private AnchorPane anchorPaneAjoutEtudiant;
 
@@ -161,10 +161,140 @@ private AnchorPane anchorPaneSelectEtudiantIdModifier;
 @FXML 
 private AnchorPane anchorPaneSelectEtudiantIdDelete;
 
+@FXML 
+private AnchorPane anchorPaneModifEtudiant;
+
+//LES BOUTTONS D'AJOUT ETUDIANT
+@FXML
+private TextField textFieldAddEtudiantNom;
+
+@FXML
+private TextField textFieldAddEtudiantPrenom;
+
+@FXML
+private TextField textFieldAddEtudiantAdresse;
+
+@FXML
+private TextField textFieldAddEtudiantTel;
+
+@FXML
+private TextField textFieldAddEtudiantMatricule;
+
+@FXML
+private TextField textFieldAddEtudiantEmail;
+
+@FXML
+private DatePicker dpAddEtudiantDateN;
+
+@FXML
+private TextField textFieldAddEtudiantLieuN;
+
+@FXML
+private TextField textFieldAddEtudiantNationlatiy;
+
+@FXML
+private TextField textFieldAddEtudiantGpSanguin;
+
+@FXML
+private TextField textFieldMajEtudiantNom;
+
+@FXML
+private TextField textFieldMajEtudiantPrenom;
+
+@FXML
+private TextField textFieldMajEtudiantAdresse;
+
+@FXML
+private TextField textFieldMajEtudiantTel;
+
+@FXML
+private TextField textFieldMajEtudiantMatricule;
+
+@FXML
+private TextField textFieldMajEtudiantEmail;
+
+@FXML
+private Button btnConfirmMajEtudiant;
+
+@FXML
+private Button btnCancelMajEtudiant;
+
+@FXML
+private VBox vbModifier111;
+
+@FXML
+private DatePicker dpMajEtudiantDateN;
+
+@FXML
+private TextField textFieldMajEtudiantLieuN;
+
+@FXML
+private TextField textFieldMajEtudiantNationlatiy;
+
+@FXML
+private TextField textFieldMajEtudiantGpSanguin;
+
+@FXML
+private RadioButton rbMasculinMaj;
+
+@FXML
+private RadioButton rbFemininMaj;
+
+@FXML
+private RadioButton rbMarieeMaj;
+
+@FXML
+private RadioButton rbCelibataireMaj;
+
+@FXML
+private RadioButton rbAutreMaj;
+
+
+
+@FXML
+private Button btnConfirmAddEtudiant;
+
+@FXML
+private Button btnCancelAddEtudiant;
+
+@FXML
+private TextField textFieldIdEtudiantDelete;
+
+@FXML
+private TextField textFieldEtudiantIdToUpdate;
+
+@FXML
+private Button btnConfrimeDeleteEtudiant;
+
+@FXML
+private Button btnCancelDeleteEtudiant;
+
+@FXML
+private Button btnSelectEtudiantIdToMaj;
+
+@FXML
+private Button btnCancelSelectEtudiantIdToMaj;
+
 
 //	 GESTION ETUDIANT END *****************************************************
+
 @FXML
-private GridPane gridGpEtudiant;
+private RadioButton rbMasculin;
+
+@FXML
+private RadioButton rbFeminin;
+
+@FXML
+private RadioButton rbMarie;
+
+@FXML
+private RadioButton rbCelibataire;
+
+@FXML
+private RadioButton rbAutre;
+
+@FXML
+private AnchorPane anchorPaneGestionEtudiant;
 
 @FXML
 private TableView<Etudiant> tabViewGroupeEtudiant;
@@ -193,7 +323,7 @@ private TableColumn<Etudiant, String> colGestEtudiantAdresse;
 
 // GESTION GROUPE PROPERTIES ***********************************************
 @FXML
-private GridPane gridGp;
+private AnchorPane anchorPaneGroupe;
 
 @FXML
 private TableView<Groupe> tvGroupe;
@@ -284,7 +414,24 @@ private TextField textFielNomGpUpdated;
 private VBox vbAjout;
 
 
-//End GestionGroupe Properties -------------------------------------------
+//End GestionGroupe Properties ------------------------------------------------------------------- */
+
+
+/* GESTION PROFESSEUR FXML BUTTON START */
+
+@FXML
+private Button btnActualiserGesETudiant;
+
+/*
+@FXML
+private Button btnActualiserGesProf;
+
+*/
+
+@FXML
+private Button btnActualiserGesGroupe;
+
+/* GESTION PROFESSEUR FXML BUTTON END ---------------------------------------------------------   */
 
 double x=0,y=0;
 
@@ -370,21 +517,21 @@ private void handleClicked(ActionEvent event) throws IOException {
 		 pnText.setText("Gestion Etudiant");
 		//pnStatus.setBackground(new Background(new BackgroundFill(Color.rgb(59, 38, 166),CornerRadii.EMPTY,Insets.EMPTY)));
 
-        gpStudent.toFront();
+        anchorPaneStudent.toFront();
         tabViewEtudiant.toFront();
 	}
 	else if(event.getSource()==btnGroupe) {
 		pnLabel.setText("/home/groupe");
 		pnText.setText("Gestion Groupe");
 		//btnAdd.setText("Ajouter un groupe");
-		gridGp.toFront();
+		anchorPaneGroupe.toFront();
 		
 		}
 	else if(event.getSource()==btnProfesseur) {
 		pnLabel.setText("/home/professeur");
 		pnText.setText("Gestion professeur");
 		//btnAdd.setText("Ajouter un professeur");
-		gpProfesseur.toFront();
+		anchorPaneProfesseur.toFront();
 		
 	   }
 	else if(event.getSource()==btnGestionGroupe) {
@@ -407,7 +554,7 @@ private void handleClicked(ActionEvent event) throws IOException {
 @FXML
 void handleModifClicked(ActionEvent event) {
    if(event.getSource()==btnOpenModifGp) {
-	   gridGpEtudiant.toFront();
+	   anchorPaneGestionEtudiant.toFront();
 	   vbAjout.toFront();
    }
 }
@@ -430,6 +577,213 @@ void updateEtudiant(MouseEvent event) {
 	anchorPaneSelectEtudiantIdModifier.toFront();
 }
 
+private String sexeSelected="M";
+@FXML
+void getSexe(ActionEvent event) {
+	if(rbMasculin.isSelected()) {
+		sexeSelected="M";
+		}
+	else
+	{
+		sexeSelected="F";
+	}
+	
+}
+
+private String etatCivilSelected="Célibataire";
+
+@FXML
+void getEtatCivil(ActionEvent event) {
+	if(rbCelibataire.isSelected()) {
+		etatCivilSelected=rbCelibataire.getText();
+	}
+	else if(rbMarie.isSelected())
+	{
+		etatCivilSelected=rbMarie.getText();
+	}
+	else {
+		etatCivilSelected=rbAutre.getText();
+	}
+	
+}
+
+//reinitialiser les buttons pour l'ajout d'etudiant
+//void 
+//void inserer un etudiant dans la bd
+@FXML
+void insetEtudiantToDb(ActionEvent event) {
+	GestionEtudiantController ge = new GestionEtudiantController();
+	
+	String dateN = dpAddEtudiantDateN.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			
+	Etudiant etudiant = new Etudiant(textFieldAddEtudiantMatricule.getText(),sexeSelected,textFieldAddEtudiantNom.getText(),textFieldAddEtudiantPrenom.getText(),
+			textFieldAddEtudiantAdresse.getText(),textFieldAddEtudiantLieuN.getText(),dateN,textFieldAddEtudiantNationlatiy.getText()
+			,etatCivilSelected,textFieldAddEtudiantTel.getText(),textFieldAddEtudiantEmail.getText(),textFieldAddEtudiantGpSanguin.getText());
+	
+	ge.add(etudiant);
+	anchorPaneStudent.toFront();
+	
+	
+}
+
+//void modifier un étudiant
+@FXML
+void selectEtudiantIdToMaj(ActionEvent event) { 
+	String btnValue = textFieldEtudiantIdToUpdate.getText();
+	
+	if(event.getSource()==btnSelectEtudiantIdToMaj) {
+		String idString =btnValue;
+		int idToDel =  Integer.valueOf(idString).intValue();
+		
+		Etudiant etToMaj = new GestionEtudiantController().getById(idToDel);
+		if(etToMaj!=null) {
+			setEtudiantDatatoTextField(etToMaj);
+			anchorPaneModifEtudiant.toFront();
+			textFieldEtudiantIdToUpdate.clear();
+		}
+		else {
+			System.out.println("Etudiant indisponible");
+		}
+	}
+	else
+	{
+		textFieldEtudiantIdToUpdate.clear();
+	}
+}
+
+// void confirmMajEtudiant Maj etudiant
+
+@FXML
+void confirmMajEtudiant(ActionEvent event) {
+	
+GestionEtudiantController ge = new GestionEtudiantController();
+	
+	String dateN = dpMajEtudiantDateN.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			
+	Etudiant etudiant = new Etudiant(textFieldMajEtudiantMatricule.getText(),sexeSelected,textFieldMajEtudiantNom.getText(),textFieldMajEtudiantPrenom.getText(),
+			textFieldMajEtudiantAdresse.getText(),textFieldMajEtudiantLieuN.getText(),dateN,textFieldMajEtudiantNationlatiy.getText()
+			,etatCivilSelected,textFieldMajEtudiantTel.getText(),textFieldMajEtudiantEmail.getText(),textFieldMajEtudiantGpSanguin.getText());
+	
+	ge.update(etudiant);
+	
+	anchorPaneStudent.toFront();
+}
+
+//void get to update etudiant data 
+
+void setEtudiantDatatoTextField(Etudiant etd) {
+	textFieldMajEtudiantMatricule.setText(etd.getMatricule());
+	textFieldMajEtudiantNom.setText(etd.getNom());
+	textFieldMajEtudiantPrenom.setText(etd.getPrenom());
+	textFieldMajEtudiantAdresse.setText(etd.getAdresse());
+	textFieldMajEtudiantLieuN.setText(etd.getLieuNaissance());
+	
+	textFieldMajEtudiantNationlatiy.setText(etd.getNationalite());
+	textFieldMajEtudiantTel.setText(etd.getTel());
+	textFieldMajEtudiantEmail.setText(etd.getEmail());
+	textFieldMajEtudiantGpSanguin.setText(etd.getGroupeSanguin());
+	String genre = etd.getGenre();
+	String dateN= etd.getDateNaissance();
+	String etatCivilSelected = etd.getSituationMatrimoniale();
+	
+	//String dateN = dpAddEtudiantDateN.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+	dpMajEtudiantDateN.setValue(null);
+	/*
+	try {
+		//LocalDate dateNaissance=new SimpleDateFormat("dd-MM-yyyy").format(dateN);
+		dpMajEtudiantDateN.setValue(null);
+		
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	*/
+	
+	if(etatCivilSelected.toLowerCase().contentEquals("marié(e")) {
+		rbMarieeMaj.setSelected(true);
+	}
+	else if(etatCivilSelected.toLowerCase().contentEquals("célibataire")) {
+		rbCelibataireMaj.setSelected(true);
+	}
+	else if(etatCivilSelected.toLowerCase().contentEquals("autre")) {
+		rbAutreMaj.setSelected(true);
+	}
+	else {
+		rbAutreMaj.setSelected(false);
+		rbCelibataireMaj.setSelected(false);
+		rbMarieeMaj.setSelected(false);
+	}
+	
+	if(genre.toLowerCase().contentEquals("f")) {
+		rbFemininMaj.setSelected(true);
+	}
+	else if(genre.toLowerCase().contentEquals("m"))  {
+		rbMasculinMaj.setSelected(true);
+	}
+	else {
+		//rbFemininMaj.setSelected(false);
+		//rbMasculinMaj.setSelected(false);
+	}
+}
+//Anuller l'ajout d'un etudiant dans la Bd
+@FXML
+void cancelAddEtudiantToDdb(ActionEvent event) {
+	
+}
+
+//function deleteEtudiant
+@FXML
+void confrimeDeleteEtudiant(ActionEvent event) {
+	String btnValue = textFieldIdEtudiantDelete.getText();
+	try {
+		
+	if(btnValue.isEmpty()) {
+		System.out.println("veuillez entrer un identifiant");
+	}
+	else {
+		String idString =btnValue;
+		int idToDel =  Integer.valueOf(idString).intValue();
+		Etudiant etToMaj = new GestionEtudiantController().getById(idToDel);
+		if(etToMaj!=null) {
+			//new GestionEtudiantController().update(idToDel);;
+			System.out.println(idToDel+" a été supprimé avec succes");
+		}
+	}
+	}
+	catch(NumberFormatException e) {
+		System.out.println("Entrer un entier ");
+	}
+	
+}
+
+
+@FXML
+void cancelDeleteEtudiant(ActionEvent event) {
+	
+}
+
+void refreshTabViewEtudiant() {
+	idGroupe.setCellValueFactory(new PropertyValueFactory<Groupe,Integer>("groupeId"));
+	nomGroupe.setCellValueFactory(new PropertyValueFactory<Groupe,String>("nomGroupe"));
+	tvGroupe.setItems(listGroupe());
+	
+	//Initialisation du tableView de gestion Etudiant
+	colEtudiantId.setCellValueFactory(new PropertyValueFactory<Etudiant,Integer>("etudiantId"));
+	colEtudiantNom.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("nom"));
+	colEtudiantPrenom.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("prenom"));
+	colEtudiantAdresse.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("adresse"));
+	colEtudiantMatricule.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("matricule"));
+	colEtudiantEmail.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("email"));
+	colEtudiantDateN.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("dateNaissance"));
+	colEtudiantNationalite.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("nationalite"));
+	colEtudiantLieuN.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("lieuNaissance"));
+	colEtudiantGpSanguin.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("groupeSanguin"));
+	colEtudiantGenre.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("genre"));
+	colEtudiantTel.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("tel"));
+	colEtudiantEtatC.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("situationMatrimoniale"));
+	tabViewEtudiant.setItems(listEtudiant());
+	tabViewEtudiant.refresh();
+}
 
 
 // END GESTION ETUDIANT ********************************************************
@@ -453,6 +807,34 @@ private void handleClose(MouseEvent event) {
 	}
 }
 
+/******************************************************************************************************************
+    GESTION PROFESSEUR START 
+  */
+
+@FXML
+void btnActualiserMouseEntered(MouseEvent event) {
+    
+}
+
+@FXML
+void actualiserTabview(MouseEvent event) {
+	if(event.getSource()==btnActualiserGesGroupe) {
+		System.out.println("actualise la tabView ges ");
+    }
+	else if(event.getSource()==btnActualiserGesETudiant) {
+		System.out.println("actualise la tabView etd");
+		refreshTabViewEtudiant();
+	}
+	/*
+	if(event.getSource()==btnActualiserGesProf) {
+		btnActualiserGesProf.setStyle("-fx-background-color:#1131bd");
+    }
+	*/
+}
+
+/******************************************************************************************************************
+GESTION PROFESSEUR END 
+*/
  
 private void makeDraggable() {
 	
@@ -490,26 +872,10 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	// TODO Auto-generated method stub
 	makeDraggable();
 	
-	//initialisation du tableView de Gestion Groupe
-	idGroupe.setCellValueFactory(new PropertyValueFactory<Groupe,Integer>("groupeId"));
-	nomGroupe.setCellValueFactory(new PropertyValueFactory<Groupe,String>("nomGroupe"));
-	tvGroupe.setItems(listGroupe());
+	refreshTabViewEtudiant();
 	
-	//Initialisation du tableView de gestion Etudiant
-	colEtudiantId.setCellValueFactory(new PropertyValueFactory<Etudiant,Integer>("etudiantId"));
-	colEtudiantNom.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("nom"));
-	colEtudiantPrenom.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("prenom"));
-	colEtudiantAdresse.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("adresse"));
-	colEtudiantMatricule.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("matricule"));
-	colEtudiantEmail.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("email"));
-	colEtudiantDateN.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("dateNaissance"));
-	colEtudiantNationalite.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("nationalite"));
-	colEtudiantLieuN.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("lieuNaissance"));
-	colEtudiantGpSanguin.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("groupeSanguin"));
-	colEtudiantGenre.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("genre"));
-	colEtudiantTel.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("tel"));
-	colEtudiantEtatC.setCellValueFactory(new PropertyValueFactory<Etudiant,String>("situationMatrimoniale"));
-	tabViewEtudiant.setItems(listEtudiant());
+	anchorPaneStudent.toFront();
+	tabViewEtudiant.toFront();
 }
 
 }

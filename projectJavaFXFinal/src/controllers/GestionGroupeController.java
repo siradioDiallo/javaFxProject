@@ -12,13 +12,11 @@ import models.Groupe;
 public class GestionGroupeController implements IModification<Groupe> {
 	List<Groupe> groupes;
 	Session session;
-	Scanner sc;
 	
 	public GestionGroupeController() {
 		try {
 			session=DbConnection.getInstance().getSession();
 			groupes = session.createQuery("from Groupe").getResultList();
-			sc= new Scanner(System.in);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -51,14 +49,13 @@ public class GestionGroupeController implements IModification<Groupe> {
 	}
 
 	@Override
-	public void update(int id) {
+	public void update(Groupe toMaj) {
 		// TODO Auto-generated method stub
 		
-		Groupe gp = getById(id);
+		Groupe gp = getById(toMaj.getGroupeId());
 
 		if(gp!=null) {
-			System.out.println("entrer le nom du groupe");
-			gp.setNomGroupe(sc.nextLine());
+			session.update(gp);
 			session.getTransaction().commit();
 		}
 	}

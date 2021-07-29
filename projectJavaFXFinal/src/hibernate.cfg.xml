@@ -10,8 +10,8 @@
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/gestion_school?serverTimezone=UTC</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.username">siradioDiallo</property>
+        <property name="connection.password">siradioDiallo</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>

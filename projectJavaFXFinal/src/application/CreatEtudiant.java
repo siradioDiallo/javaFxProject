@@ -46,7 +46,18 @@ public class CreatEtudiant extends Application {
 			//start transaction
 			session.beginTransaction();
 			
+			//save student 
+		    session.save(e1);
+		    session.save(e4);
+		    session.save(e3);
+		    session.save(e2);
+		    
+		    //commmit transcations
+		    session.getTransaction().commit();
+		    	
 			//recupération de tous les étudiants
+		    
+		    
 			//recupération des étudiant existant
 		     List<Etudiant> ets = session.createQuery("from Etudiant").getResultList();
 			 
@@ -73,7 +84,7 @@ public class CreatEtudiant extends Application {
 			//session.save(e1);
 			
 			//commit transaction
-			session.getTransaction().commit();
+			//session.getTransaction().commit();
 			System.out.println("Done !");
 			//
 			

@@ -16,7 +16,7 @@ public class GestionProfesseurController implements IModification<Professeur>{
 	List<Professeur> professeurs;
 	Session session;
 	SessionFactory factory;
-	Scanner sc;
+
 	
 	public GestionProfesseurController() {
 	
@@ -24,7 +24,6 @@ public class GestionProfesseurController implements IModification<Professeur>{
 			session=DbConnection.getInstance().getSession();
 			factory=DbConnection.getInstance().getFactory();
 			professeurs = session.createQuery("from Professeur").getResultList();
-			sc = new Scanner(System.in);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -56,38 +55,12 @@ public class GestionProfesseurController implements IModification<Professeur>{
 	}
 
 	@Override
-	public void update(int id) throws NullPointerException{
+	public void update(Professeur prof) throws NullPointerException{
 		// TODO Auto-generated method stub
-		
-		if(getById(id)!=null) {
-			Professeur etud = getById(id);
-
-			System.out.println("");
-			System.out.println("Entrer le nom de l'étudiant:");
-			etud.setNom(sc.nextLine());
-			//sc.nextLine();
-			System.out.println("Entrer le Prénom de L'étudiant:");
-			etud.setPrenom(sc.nextLine());
-			System.out.println("Entrer le matricule de L'étudiant:");
-			etud.setMatricule(sc.nextLine());
-			System.out.println("Entrer le genre de L'étudiant:");
-			etud.setGenre(sc.nextLine());
-			System.out.println("Entrer l'adresse de L'étudiant:");
-			etud.setAdresse(sc.nextLine());
-			System.out.println("Entrer la date de L'étudiant:");
-			etud.setDateNaissance(sc.nextLine());
-			System.out.println("Entrer le lieu de naissance de L'étudiant:");
-			etud.setLieuNaissance(sc.nextLine());
-			System.out.println("Entrer la nationalité de L'étudiant:");
-			etud.setNationalite(sc.nextLine());
-			System.out.println("Entrer la situation matrimoniale de L'étudiant:");
-			etud.setSituationMatrimoniale(sc.nextLine());
-			System.out.println("Entrer le numéro de L'étudiant:");
-			etud.setTel(sc.nextLine());
-			System.out.println("Entrer l'email de L'étudiant:");
-			etud.setEmail(sc.nextLine());
-			System.out.println("Entrer le groupe sanguin de L'étudiant:");
-			etud.setSpeciality(sc.nextLine());
+		   Professeur profe = getById(prof.getId());
+		   
+		if(profe!=null) {
+		 session.update(profe);
 			session.getTransaction().commit();
 		}
 

@@ -6,7 +6,7 @@ public interface IModification <T> {
 	
 	void add(T toAdd);
 	void delete(T toDel);
-	void update(int id);
+	void update(T toMaj);
 	void showDetail(int id);
 	void showAll();
      List<T> findAll();
